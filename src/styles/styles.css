@@ -1,0 +1,11 @@
+table {
+    border: 1px solid #c3c3c3 !important;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: transparent;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #DDD;
+}
