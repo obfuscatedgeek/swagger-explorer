@@ -17,7 +17,7 @@ class App extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
-		var me = this;
+		let me = this;
 
 		me.onSelectChange = me.onSelectChange.bind(me);
 		me.onListClick = me.onListClick.bind(me);
@@ -33,22 +33,20 @@ class App extends React.Component {
 
 	componentDidMount() {
 
-		var me = this
+		let me = this
 			,URL = 'https://api.apis.guru/v2/list.json'
 		;
 
 		Ajax.get(URL)
 			.end((req, res) => {
-
-				var jsonObj = JSON.parse(res.text);
-
+				let jsonObj = JSON.parse(res.text);
 				me.setState({keys: Object.keys(jsonObj), all: jsonObj})
 			})
 	}
 
 	onSelectChange(e) {
 
-		var me = this
+		let me = this
 			,selValue = e.target.value
 			,selJson = me.state.all[selValue]
 			,arrSelKeys = Object.keys(selJson.versions)
@@ -57,7 +55,7 @@ class App extends React.Component {
 
 		Ajax.get(selUrl)
 			.end((req, res) => {
-				var jsonObj = JSON.parse(res.text);
+				let jsonObj = JSON.parse(res.text);
 				me.setState(
 					{
 						listKeys: Object.keys(jsonObj.paths)
@@ -65,12 +63,11 @@ class App extends React.Component {
 						, listDetail: []
 					})
 			});
-
 	}
 
 	onListClick(e) {
 
-		var me = this
+		let me = this
 			,val = e.currentTarget.getAttribute('name')
 		;
 
@@ -86,7 +83,7 @@ class App extends React.Component {
 
 	render() {
 
-		var me = this;
+		let me = this;
 
 		return (
 			<div>
@@ -110,7 +107,7 @@ class App extends React.Component {
 					</div>
 					<div className="columns medium-8">
 						<h4>Details</h4>
-						<Detail data={me.state.listDetail}></Detail>
+						<Detail data={me.state.listDetail}/>
 					</div>
 				</div>
 			</div>

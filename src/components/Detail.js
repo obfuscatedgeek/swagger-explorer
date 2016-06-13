@@ -4,14 +4,13 @@
  * Date: 13/06/16 on 3:53 AM
  */
 
-
 import React, {Component} from 'react';
 
 class Detail extends Component {
 
 	buildParameters(item, key) {
 
-		var me = this
+		let me = this
 			,arrKeys = Object.keys(item)
 		;
 
@@ -29,10 +28,9 @@ class Detail extends Component {
 
 	}
 
-
 	buildRow(item, key) {
 
-		var me = this
+		let me = this
 			,jsonData = me.props.data
 			,rowData = jsonData[item]
 			,parameters = rowData.parameters || []
@@ -61,7 +59,7 @@ class Detail extends Component {
 		return (
 
 			<div className={className} key={key}>
-				<h5>/{item}</h5>
+				<h5>/{item.toUpperCase()}</h5>
 				<h6>{rowData.summary}</h6>
 				<p><b>description: </b>{rowData.description}</p>
 
@@ -78,8 +76,8 @@ class Detail extends Component {
 					<div className="columns medium-1">&nbsp;</div>
 					<div className="columns medium-11">
 						<div className="label secondary">Responses:</div>
-						{responseKey.map( (rk, idx) => {
-							return <p key={idx}><b>{rk}: </b>{responses[rk].description}</p>
+						{responseKey.map( (responseKey, index) => {
+							return <p key={index}><b>{responseKey}: </b>{responses[responseKey].description}</p>
 						})}
 					</div>
 				</div>
@@ -87,15 +85,9 @@ class Detail extends Component {
 		)
 	}
 
-// <p>
-// <b>produces: </b>{produces.map( (prod, idx) => {
-// 	return (<span><button key={idx} className="button small">{prod}</button>&nbsp;</span>)
-// })}
-// </p>
-
 	render() {
 
-		var me = this
+		let me = this
 			,jsonData = me.props.data
 			,keys = Object.keys(jsonData)
 		;
