@@ -19,12 +19,26 @@ class Detail extends Component {
 
 				<tbody>
 
-				{arrKeys.map((k, index) => {
-					return (<tr key={index}><td><b>{k}</b></td><td>{item[k]}</td></tr>)
-				})}
+				{arrKeys.map( (val, index) => {
+
+							let attr = item[val];
+
+
+							return(
+								<tr key={index}>
+									<td><b>{val}</b></td>
+									<td>{typeof attr === 'object' ? attr.$ref : attr}</td>
+								</tr>
+							)
+						}
+					)
+				}
+
+
 				</tbody>
 			</table>
-		)
+		);
+
 
 	}
 
