@@ -1,7 +1,7 @@
 {
   "name": "redux-start",
   "version": "1.0.0",
-  "description": "Starter kit for React and Redux",
+  "description": "Swagger API's explorer",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel open:src lint:watch test:watch",
@@ -60,6 +60,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/pluralsight-redux-starter"
+    "url": "https://github.com/obfuscatedgeek/swagger-explorer"
   }
 }

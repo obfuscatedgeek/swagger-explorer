@@ -10,10 +10,12 @@ import React, {Component} from 'react';
 class List extends Component {
 
 	buildItem(item, key) {
-		var me = this;
-		
+		var me = this
+			,arrItem = item.split('/')
+			,domain = arrItem.splice(0, 2)
+		;
 
-		return (<li onClick={me.props.onListClick} key={key} name={item}>{item}</li>)
+		return (<li onClick={me.props.onListClick} key={key} name={item}><p>{domain.join('/')} <br/> /{arrItem.join('/')}</p></li>)
 	}
 
 	render() {
@@ -24,7 +26,7 @@ class List extends Component {
 		;
 
 		return (
-			<ul>
+			<ul className="menu vertical">
 				{listings.map(me.buildItem.bind(me))}
 			</ul>
 		)

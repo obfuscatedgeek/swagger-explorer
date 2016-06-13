@@ -9,3 +9,26 @@ table tbody tr:nth-child(even) {
 table tbody tr {
     border-bottom: 1px solid #DDD;
 }
+
+ul.menu li {
+    overflow-wrap: normal;
+    overflow-wrap: break-word;
+
+
+
+    margin: 0 0 5px 0;
+    background: #f2f2f2;
+    padding: .25em 1em;
+    font-size: .9em;
+    border: 1px solid #d9d9d9;
+    line-height:1.6em;
+    cursor: pointer;
+}
+
+ul.menu li:hover {
+    background: #d9d9d9;
+}
+
+ul.menu li.active{
+    background: #d9d9d9;
+}

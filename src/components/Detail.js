@@ -17,15 +17,11 @@ class Detail extends Component {
 
 		return (
 			<table key={key}>
-				<thead>
-					<tr>
-						<th colSpan="2">Parameters</th>
-					</tr>
-				</thead>
+
 				<tbody>
 
-				{arrKeys.map(k => {
-					return (<tr><td><b>{k}</b></td><td>{item[k]}</td></tr>)
+				{arrKeys.map((k, index) => {
+					return (<tr key={index}><td><b>{k}</b></td><td>{item[k]}</td></tr>)
 				})}
 				</tbody>
 			</table>
@@ -41,6 +37,9 @@ class Detail extends Component {
 			,rowData = jsonData[item]
 			,parameters = rowData.parameters || []
 			,className = 'callout secondary'
+			,produces = rowData.produces || []
+			,responses = rowData.responses || {}
+			,responseKey = Object.keys(responses)
 		;
 
 		switch(item) {
@@ -59,25 +58,40 @@ class Detail extends Component {
 
 		}
 
-		console.log(rowData);
-
-
-
 		return (
 
 			<div className={className} key={key}>
 				<h5>/{item}</h5>
+				<h6>{rowData.summary}</h6>
 				<p><b>description: </b>{rowData.description}</p>
+
 				<div className="row">
 					<div className="columns medium-1">&nbsp;</div>
 					<div className="columns medium-11">
+						<div className="label secondary">Parameters:</div>
 						{parameters.map(me.buildParameters.bind(me))}
+					</div>
+				</div>
+
+
+				<div className="row">
+					<div className="columns medium-1">&nbsp;</div>
+					<div className="columns medium-11">
+						<div className="label secondary">Responses:</div>
+						{responseKey.map( (rk, idx) => {
+							return <p key={idx}><b>{rk}: </b>{responses[rk].description}</p>
+						})}
 					</div>
 				</div>
 			</div>
 		)
 	}
 
+// <p>
+// <b>produces: </b>{produces.map( (prod, idx) => {
+// 	return (<span><button key={idx} className="button small">{prod}</button>&nbsp;</span>)
+// })}
+// </p>
 
 	render() {
 
@@ -85,8 +99,6 @@ class Detail extends Component {
 			,jsonData = me.props.data
 			,keys = Object.keys(jsonData)
 		;
-
-		// console.log(keys);
 
 		return (
 			<div>

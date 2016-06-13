@@ -29,9 +29,6 @@ class App extends React.Component {
 			,listObject: []
 			,listDetail: []
 		};
-
-
-		console.log('<<<<', me.state.listKeys);
 	}
 
 	componentDidMount() {
@@ -43,7 +40,7 @@ class App extends React.Component {
 		Ajax.get(URL)
 			.end((req, res) => {
 
-				let jsonObj = JSON.parse(res.text);
+				var jsonObj = JSON.parse(res.text);
 
 				me.setState({keys: Object.keys(jsonObj), all: jsonObj})
 			})
@@ -60,25 +57,30 @@ class App extends React.Component {
 
 		Ajax.get(selUrl)
 			.end((req, res) => {
-
-				let jsonObj = JSON.parse(res.text);
-				me.setState({listKeys: Object.keys(jsonObj.paths), listObject: jsonObj})
+				var jsonObj = JSON.parse(res.text);
+				me.setState(
+					{
+						listKeys: Object.keys(jsonObj.paths)
+						, listObject: jsonObj
+						, listDetail: []
+					})
 			});
 
-		// this.setState({
-		// 	selectedApi: JSON.stringify(me.state.all[selValue])
-		// });
 	}
 
 	onListClick(e) {
 
-
 		var me = this
-			,val = e.target.getAttribute('name')
+			,val = e.currentTarget.getAttribute('name')
 		;
+
+		document.getElementsByClassName('active')[0] ? document.getElementsByClassName('active')[0].className = '' : '';
+
+		e.currentTarget.className += ' active';
 
 		me.setState({listDetail: this.state.listObject.paths[val]});
 
+		window.scrollTo(0,0);
 	}
 
 
@@ -89,7 +91,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<div className="top-bar">
-					<div class="top-bar-title">EJAZ</div>
+					<div class="top-bar-title">EJAZ || obfuscated.geek@gmail.com</div>
 				</div>
 				<div className="callout large primary">
 					<div className="row text-center">
@@ -101,9 +103,13 @@ class App extends React.Component {
 				</div>
 				<div className="row">
 					<div className="columns medium-4">
+						<div className="panel">
+						<h4>Paths</h4>
 						<List data={this.state.listKeys} onListClick={me.onListClick}/>
+						</div>
 					</div>
 					<div className="columns medium-8">
+						<h4>Details</h4>
 						<Detail data={me.state.listDetail}></Detail>
 					</div>
 				</div>

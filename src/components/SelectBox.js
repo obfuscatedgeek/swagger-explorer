@@ -19,8 +19,7 @@ class SelectBox extends Component {
 		var me = this
 			,data = me.props.data || []
 		;
-
-		// console.log(data);
+		
 		return (
 			<label htmlFor=""> Select API
 				<select onChange={this.props.onChange}>
